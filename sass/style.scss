@@ -1,0 +1,98 @@
+// ********** GENERAL STYLES ********** 
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower'); 
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700&subset=latin-ext'); 
+
+// Vars
+$font-main-1: 'Indie Flower', cursive;
+$font-main-2: 'Amatic SC', cursive;
+$font-main-3: 'Source Code Pro', monospace;
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    // This defines what 1rem is  
+    font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+    box-sizing: border-box;
+    background-color: #192a56;
+    font-family: $font-main-3;
+}
+
+::selection {
+    background-color: #487eb0;
+    color: white;
+}
+
+// ********** HEADER ********** 
+
+.header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 8rem 0;
+    position: relative;
+    border-bottom: 2px solid white;
+    background-color: #1d2129;
+    z-index: -1;
+    font-family: $font-main-1;
+
+    &__main {
+        font-size: 5rem;
+        color: #fff;
+    }
+}
+
+// ********** MAIN CONTENT ********** 
+
+.main {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   .form {
+        display: flex;
+        flex-direction: column;
+
+        &__label {
+            color: white;
+            font-size: 2rem;
+            width: 100%;
+        }
+
+        &__input {
+            width: 100%;
+        }
+    }
+
+    .card {
+        padding-top: 3rem;
+        color: #fff;
+        font-size: 2rem;
+    }
+
+    .table {
+        
+    }
+}
+
+// ***** Moving background *****
+  
+.background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}

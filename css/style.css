@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC:400,700&subset=latin-ext");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box;
+  background-color: #192a56;
+  font-family: "Source Code Pro", monospace; }
+
+::selection {
+  background-color: #487eb0;
+  color: white; }
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 8rem 0;
+  position: relative;
+  border-bottom: 2px solid white;
+  background-color: #1d2129;
+  z-index: -1;
+  font-family: "Indie Flower", cursive; }
+  .header__main {
+    font-size: 5rem;
+    color: #fff; }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .main .form {
+    display: flex;
+    flex-direction: column; }
+    .main .form__label {
+      color: white;
+      font-size: 2rem;
+      width: 100%; }
+    .main .form__input {
+      width: 100%; }
+  .main .card {
+    padding-top: 3rem;
+    color: #fff;
+    font-size: 2rem; }
+
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1; }
