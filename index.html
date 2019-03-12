@@ -11,28 +11,31 @@
 <body>
     <!-- HEADER -->
     <header class="header">
-        <h1 class="header__main">.WeatherCheck - Check the weather fella.</h1>
+        <h1 class="header__main">.EasyWeatherCheck.</h1>
         <canvas class="background"></canvas>
     </header>
 
     <!-- MAIN -->
     <section class="main">
+        
         <!-- FORM  -->
-        <form id="formEl" class="form">
-            <!-- INPUT FIELD -->
-            <div>
-                <label for="cityInput" class="form__label">Type City name</label>
-                <input type="text" class="form__input" id="cityInput" placeholder="city name... ">
-            </div>
-            
-            <!-- SUBMIT BUTTON -->
-            <div>
-                <input type="submit" class="form__submit" id="submitBtn" value="Check">
-            </div>  
-        </form>
+        <div class="form__box">
+            <form id="formEl" class="form">
+                <!-- INPUT FIELD -->
+                <div class="form__container">
+                    <label for="cityInput" class="form__label">Type City name - check the weather</label>
+                    <input type="text" class="form__input" id="cityInput" placeholder="city name... ">
+                </div>
+                
+                <!-- SUBMIT BUTTON -->
+                <div class="form__container">
+                    <button type="submit" class="form__submit" id="submitBtn">Check</button>
+                </div>  
+            </form>
+        </div>
         
         <!-- TABLE FOR SHOWING TEMP DETAILS IN CURRENT CITY -->
-        <div id="weatherInfo" class="card">
+        <div id="weatherCard" class="card">
             <table class="table" id="weatherTable"></table>
         </div>
     </section>

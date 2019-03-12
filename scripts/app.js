@@ -1,16 +1,19 @@
 // ************ MAIN VARS ************
-
-const form = document.querySelector('#formEl');
+const form = document.querySelector('.form');
+const table = document.querySelector('.table');
 
 // ************ FUNCTIONS ************
 
 // Render weather information to UI
 const renderWeather = (data) => {
     const weatherTable = document.querySelector('#weatherTable');
+
+    // Calculate sunrise and sunset
     calculateSun(data);
     
     weatherTable.innerHTML =
-    `<tr>
+    `
+    <tr>
         <th>City</th>
         <td>${data.name}</td>
     </tr>
@@ -20,7 +23,7 @@ const renderWeather = (data) => {
     </tr>
     <tr>
         <th>Atmospheric preassure</th>
-        <td>${data.main.pressure}</td>
+        <td>${data.main.pressure} hPa</td>
     </tr>
     <tr>
         <th>Humidity</th>
@@ -39,18 +42,24 @@ const renderWeather = (data) => {
         <td>${data.weather[0].description}</td>
     </tr>
     `
+    // Moving elements
+    table.style.opacity = '1';
+    form.classList.add('slideToLeft');
 }
 
 // Calculate sunrise and sunset
 const calculateSun = (data) => {
-    const sunriseTimeMs = data.sys.sunrise * 1000;
-    const sunsetTimeMs = data.sys.sunset * 1000;
+    // leadingZero => add zero add the beginning
+    leadingZero = (i) => {
+        return (i < 10)? '0'+i : i;
+    }
 
-    const sunrise = new Date(sunriseTimeMs); 
-    const sunset = new Date(sunsetTimeMs);
+    const sunrise = new Date(data.sys.sunrise * 1000); 
+    const sunset = new Date(data.sys.sunset * 1000);
 
-    const sunriseTime = `${sunrise.getHours()}:${sunrise.getMinutes()}:${sunrise.getSeconds()}`
-    const sunsetTime = `${sunset.getHours()}:${sunset.getMinutes()}:${sunset.getSeconds()}`
+
+    const sunriseTime = `${leadingZero(sunrise.getHours())}:${leadingZero(sunrise.getMinutes())}:${leadingZero(sunrise.getSeconds())}`
+    const sunsetTime = `${leadingZero(sunset.getHours())}:${leadingZero(sunset.getMinutes())}:${leadingZero(sunset.getSeconds())}`
 
     return {
         sunrise : sunriseTime,
@@ -65,29 +74,62 @@ form.addEventListener('submit', e => {
     const city = document.querySelector('#cityInput').value;
     
     // Fetching city from weather API
-    getWeather(city)
-    .then((data)=> {
-        console.log(data);
-        renderWeather(data);
-    })
-    .catch((err) => {
-        console.log(`Error: ${err}`);
-    })
+    if (city.length === 0) {
+        alert('Provide city name to get weather')
+    } else {
+        getWeather(city)
+        .then((data)=> {
+            renderWeather(data);
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}`);
+        })
+
+        // Moving elments
+        // 1. set table display to block again
+        table.style.display = 'flex'
+        // 2. slide table from right
+        table.classList.add('slideFromRight');
+        // 3. remove slide from left from form
+        form.classList.remove('slideFromLeft');
+        // 4. slide form to left 
+        form.classList.add('slideToLeft');
+        
+        setTimeout(() => {
+            form.style.display = 'none';
+        }, 500) 
+    }
     
     e.preventDefault();
 })
 
+table.addEventListener('click', (e) => {
+    // 1. form display block
+    setTimeout(() => {
+        form.style.display = 'flex';
+    }, 200);
+    // 2. remove move to left class from form
+    form.classList.remove('slideToLeft');
+    // 3. add class slide from left to form
+    form.classList.add('slideFromLeft');
+    // 4. remove from table slide from right
+    table.classList.remove('slideFromRight');
+    // 5. slide table to right 
+    table.classList.add('slideToRight');
+    // 5 set table display to none
+    setTimeout(() => {
+        table.style.display = 'none'
+    }, 500);
 
+    // Clear input value for the city name
+    document.querySelector('#cityInput').value = '';
+})
 
-
-
-
-
-// // ************ BCG ************
-// const particles = Particles.init({
-// 	selector: '.background',
-//     color: ['#404B69', '#DBEDF3'],
-//     connectParticles: true,
-//     speed: .5,
-//     minDistance: 10
-// });
+// ************ BCG ************
+const particles = Particles.init({
+	selector: '.background',
+    color: ['#404B69', '#DBEDF3'],
+    connectParticles: true,
+    speed: .5,
+    minDistance: 10
+});
