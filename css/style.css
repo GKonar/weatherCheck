@@ -102,13 +102,13 @@ body {
   z-index: -1; }
 
 .slideToLeft {
-  animation: slideToLeft .8s ease; }
+  animation: slideToLeft .6s ease; }
 
 .slideFromLeft {
-  animation: slideFromLeft .8s ease; }
+  animation: slideFromLeft .6s ease; }
 
 .slideToRight {
-  animation: slideToRight .8s ease; }
+  animation: slideToRight .6s ease; }
 
 .slideFromRight {
   animation: slideFromRight .8s ease; }

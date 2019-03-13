@@ -57,7 +57,6 @@ const calculateSun = (data) => {
     const sunrise = new Date(data.sys.sunrise * 1000); 
     const sunset = new Date(data.sys.sunset * 1000);
 
-
     const sunriseTime = `${leadingZero(sunrise.getHours())}:${leadingZero(sunrise.getMinutes())}:${leadingZero(sunrise.getSeconds())}`
     const sunsetTime = `${leadingZero(sunset.getHours())}:${leadingZero(sunset.getMinutes())}:${leadingZero(sunset.getSeconds())}`
 
@@ -72,7 +71,7 @@ const calculateSun = (data) => {
 form.addEventListener('submit', e => {
     // Getting Input Value
     const city = document.querySelector('#cityInput').value;
-    
+
     // Fetching city from weather API
     if (city.length === 0) {
         alert('Provide city name to get weather')
@@ -80,24 +79,26 @@ form.addEventListener('submit', e => {
         getWeather(city)
         .then((data)=> {
             renderWeather(data);
-        })
-        .catch((err) => {
-            console.log(`Error: ${err}`);
-        })
 
-        // Moving elments
-        // 1. set table display to block again
-        table.style.display = 'flex'
-        // 2. slide table from right
-        table.classList.add('slideFromRight');
-        // 3. remove slide from left from form
-        form.classList.remove('slideFromLeft');
-        // 4. slide form to left 
-        form.classList.add('slideToLeft');
+            // 1. set table display to block
+            table.style.display = 'flex'
+            // 2. slide table from right
+            table.classList.add('slideFromRight');
+            // 3. remove slide from left from form
+            form.classList.remove('slideFromLeft');
+            // 4. slide form to left 
+            form.classList.add('slideToLeft');
         
         setTimeout(() => {
             form.style.display = 'none';
         }, 500) 
+        })
+        .catch((err) => {
+            alert('Provide correct city name')
+            console.log(`Error: ${err}`);
+        })
+
+        
     }
     
     e.preventDefault();
@@ -125,7 +126,7 @@ table.addEventListener('click', (e) => {
     document.querySelector('#cityInput').value = '';
 })
 
-// ************ BCG ************
+// ************ MOVING HEADER BCG ************
 const particles = Particles.init({
 	selector: '.background',
     color: ['#404B69', '#DBEDF3'],
@@ -133,3 +134,25 @@ const particles = Particles.init({
     speed: .5,
     minDistance: 10
 });
+
+
+
+// Other API Test
+// ****** Callback ******
+
+// getCountry('PL', (country, error) => {
+//     if (error) {
+//         console.log(`Error: ${error}`);
+//     } else {
+//         console.log(country);
+//     }
+// })
+
+// ****** Promises ******
+// getCountry('MX')
+// .then((country) => {
+//     console.log(country);
+// })
+// .catch((err) => {
+//     console.log(`Error: ${err}`);
+// })
